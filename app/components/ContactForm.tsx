@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, FormEvent } from "react";
 import localFont from "next/font/local";
 
 const jersey10 = localFont({ src: "../../public/Jersey10-Regular.ttf" });
@@ -9,20 +8,12 @@ const jersey10 = localFont({ src: "../../public/Jersey10-Regular.ttf" });
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function ContactForm() {
-  const searchParams = useSearchParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
-
-  useEffect(() => {
-    const paramSubject = searchParams.get("subject");
-    const paramMessage = searchParams.get("message");
-    if (paramSubject) setSubject(paramSubject);
-    if (paramMessage) setMessage(paramMessage);
-  }, [searchParams]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
