@@ -99,7 +99,6 @@ export default function Home() {
               { date: 'Apr 09', venue: 'Monday Night Brewing', location: 'Birmingham, AL' },
               { date: 'Apr 25', venue: 'Trimtab Brewing', location: 'Birmingham, AL' },
               { date: 'May 02', venue: 'The Upstairs at Avondale', location: 'Birmingham, AL' },
-              { date: 'May 23', venue: 'The Upstairs at Avondale', location: 'Birmingham, AL' },
               { date: 'May 29', venue: "Mom's Basement", location: 'Birmingham, AL' },
             ].map((show, i) => (
               <div
