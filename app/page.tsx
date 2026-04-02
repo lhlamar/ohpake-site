@@ -14,7 +14,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-[#0e1019] text-[#e8edf8] overflow-x-hidden">
 
       {/* ── Hero ── */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen pt-20 px-6 text-center">
+      <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center">
 
         {/* Radial glow blob behind the title */}
         <div
