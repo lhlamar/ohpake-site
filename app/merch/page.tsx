@@ -82,7 +82,7 @@ export default function MerchPage() {
                   </div>
                 ) : (
                   <div className="flex flex-col gap-1.5 mt-1">
-                    <span className="text-xs text-[#6280c4] tracking-[0.2em] uppercase">Sizes availabl</span>
+                    <span className="text-xs text-[#6280c4] tracking-[0.2em] uppercase">Sizes available</span>
                     <div className="flex flex-wrap gap-1.5">
                       {Object.entries(item.inventory.sizes).map(([size, qty]) => (
                         <span
