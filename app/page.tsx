@@ -1,4 +1,5 @@
 import localFont from 'next/font/local'
+import { getShows } from './lib/shows'
 
 const jersey10 = localFont({ src: '../public/Jersey10-Regular.ttf' })
 
@@ -9,7 +10,11 @@ const links = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export default function Home() {
+const monthFmt = new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'America/Chicago' })
+const dayFmt = new Intl.DateTimeFormat('en-US', { day: '2-digit', timeZone: 'America/Chicago' })
+
+export default async function Home() {
+  const shows = await getShows()
   return (
     <div className="min-h-screen flex flex-col bg-[#0e1019] text-[#e8edf8] overflow-x-hidden">
 
@@ -94,34 +99,37 @@ export default function Home() {
             Upcoming Shows
           </h2>
 
-          <div className="flex flex-col gap-4">
-            {[
-              { date: 'Apr 09', venue: 'Monday Night Brewing', location: 'Birmingham, AL' },
-              { date: 'Apr 25', venue: 'Trimtab Brewing', location: 'Birmingham, AL' },
-              { date: 'May 02', venue: 'The Upstairs at Avondale', location: 'Birmingham, AL' },
-              { date: 'May 29', venue: "Mom's Basement", location: 'Birmingham, AL' },
-            ].map((show, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-5 py-5 border-b border-[#9aaedf]/10 last:border-0"
-              >
-                <div className="w-16 shrink-0 text-center">
-                  <p className={`${jersey10.className} text-2xl text-[#7b96d4] leading-tight`}>{show.date.split(' ')[0]}</p>
-                  <p className="text-xs text-[#9aaedf] uppercase tracking-wider">{show.date.split(' ')[1]}</p>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-[#e8edf8]">{show.venue}</p>
-                  <p className="text-xs text-[#9aaedf] mt-0.5">{show.location}</p>
-                </div>
-                <a
-                  href="#"
-                  className="shrink-0 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-[#6280c4] text-[#9aaedf] hover:bg-[#6280c4]/20 transition-colors"
+          {shows.length === 0 ? (
+            <p className="text-[#9aaedf] italic">More shows announcing soon.</p>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {shows.map((show, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-5 py-5 border-b border-[#9aaedf]/10 last:border-0"
                 >
-                  Tickets
-                </a>
-              </div>
-            ))}
-          </div>
+                  <div className="w-16 shrink-0 text-center">
+                    <p className={`${jersey10.className} text-2xl text-[#7b96d4] leading-tight`}>{monthFmt.format(show.date)}</p>
+                    <p className="text-xs text-[#9aaedf] uppercase tracking-wider">{dayFmt.format(show.date)}</p>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-[#e8edf8]">{show.venue}</p>
+                    <p className="text-xs text-[#9aaedf] mt-0.5">{show.location}</p>
+                  </div>
+                  {show.url && (
+                    <a
+                      href={show.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-[#6280c4] text-[#9aaedf] hover:bg-[#6280c4]/20 transition-colors"
+                    >
+                      Tickets
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
