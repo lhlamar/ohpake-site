@@ -1,5 +1,6 @@
 import localFont from 'next/font/local'
 import { getShows } from './lib/shows'
+import EpPlayer from './components/EpPlayer'
 
 const jersey10 = localFont({ src: '../public/Jersey10-Regular.ttf' })
 
@@ -69,25 +70,11 @@ export default async function Home() {
       </section>
 
       {/* ── Music strip ── */}
-      <section id="music" className="px-6 py-20 md:py-32 max-w-2xl mx-auto w-full">
+      <section id="music" className="px-6 py-20 md:py-32 max-w-4xl mx-auto w-full">
         <SectionLabel>Music</SectionLabel>
 
-        <div className="mt-6 w-full rounded-2xl overflow-hidden border border-[#9aaedf]/10 bg-[#9aaedf]/5">
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/InuV-ak9lsY"
-              title="Ohpake"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-            {/* Color tint overlay — blends warm video tones toward site palette */}
-            <div
-              aria-hidden
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: 'rgba(98, 128, 196, 0.35)', mixBlendMode: 'color' }}
-            />
-          </div>
+        <div className="mt-6">
+          <EpPlayer />
         </div>
       </section>
 

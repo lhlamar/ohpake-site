@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# source master audio — kept locally, never served or deployed (previews live in public/previews)
+/_source-masters
+
 # debug
 npm-debug.log*
 yarn-debug.log*
