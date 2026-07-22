@@ -94,7 +94,7 @@ export default function EpPlayer() {
         onPause={() => setPlaying(false)}
       />
 
-      <div className="flex flex-col sm:flex-row sm:h-96">
+      <div className="flex flex-col sm:flex-row sm:h-104">
         {/* Cover — full-width square on mobile; on desktop a square sized to the
             card's fixed height. Column + image are both square, so object-cover never crops. */}
         <div className="relative w-full aspect-square sm:w-auto sm:h-full sm:shrink-0">
@@ -195,9 +195,9 @@ export default function EpPlayer() {
             </span>
           </div>
 
-          {/* Controls + stream link */}
-          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 pt-1">
-            <div className="flex items-center gap-2">
+          {/* Controls — centered, with the stream link on its own row below */}
+          <div className="flex flex-col items-center gap-4 pt-1">
+            <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => step(-1)}
